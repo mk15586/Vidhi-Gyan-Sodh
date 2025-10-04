@@ -18,7 +18,7 @@ export default function SignupPage() {
         <CardHeader className="text-center">
            <div className="flex justify-center mb-4">
                 <Link href="/">
-                    <Image src="/VGS-logo.png" alt="Vidhi Gyan Sodh Logo" width={120} height={32} priority />
+                    <Image src="/logo.png" alt="Vidhi Gyan Sodh Logo" width={100} height={26} priority />
                 </Link>
             </div>
           <CardTitle className="text-2xl font-headline">Create an Account</CardTitle>
