@@ -13,6 +13,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import Comments from '@/components/comments';
 import { useToast } from "@/hooks/use-toast";
 import React from 'react';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export default function CoursePage() {
   const router = useRouter();
@@ -21,7 +22,8 @@ export default function CoursePage() {
   
   const id = Array.isArray(params.id) ? params.id[0] : params.id;
 
-  const [course, setCourse] = React.useState<(typeof courses)[0] | undefined>(undefined);
+  const [course, setCourse] = React.useState<(typeof courses)[0] | null>(null);
+  const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
     if (id) {
@@ -32,11 +34,33 @@ export default function CoursePage() {
         notFound();
       }
     }
+    setLoading(false);
   }, [id]);
 
+  if (loading) {
+    return (
+        <div className="container mx-auto py-12 px-4">
+            <div className="space-y-4">
+                <Skeleton className="h-10 w-1/4" />
+                <Skeleton className="h-8 w-3/4" />
+                <Skeleton className="h-8 w-1/2" />
+                <div className="grid lg:grid-cols-3 gap-12 pt-8">
+                    <div className="lg:col-span-2 space-y-8">
+                        <Skeleton className="h-48 w-full" />
+                        <Skeleton className="h-96 w-full" />
+                    </div>
+                    <div className="lg:col-span-1">
+                        <Skeleton className="h-96 w-full" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+  }
+
   if (!course) {
-    // You can return a loading spinner here while the course is being found.
-    return <div>Loading...</div>;
+    // This will be caught by the notFound() in useEffect, but as a fallback.
+    return notFound();
   }
 
 
