@@ -1,4 +1,5 @@
-import { notFound } from 'next/navigation';
+'use client';
+import { notFound, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { courses } from '@/lib/courses';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
@@ -11,6 +12,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
 import Comments from '@/components/comments';
+import { useToast } from "@/hooks/use-toast"
 
 
 type CoursePageProps = {
@@ -19,12 +21,27 @@ type CoursePageProps = {
   };
 };
 
-export default async function CoursePage({ params }: CoursePageProps) {
+export default function CoursePage({ params }: CoursePageProps) {
+  const router = useRouter();
+  const { toast } = useToast();
   const course = courses.find((c) => c.id === params.id);
 
   if (!course) {
     notFound();
   }
+
+  const handleAddToCart = () => {
+    toast({
+      title: "Added to Cart!",
+      description: `"${course.title}" has been added to your cart.`,
+    });
+    // Here you would typically add the course to a global cart state
+  };
+
+  const handleEnrollNow = () => {
+    // Here you would add to cart and then navigate
+    router.push('/checkout');
+  };
 
   const videoPlaceholder = PlaceHolderImages.find(img => img.id === 'course-video-placeholder');
   const userAvatar = PlaceHolderImages.find(img => img.id === 'user-avatar-1');
@@ -106,15 +123,13 @@ export default async function CoursePage({ params }: CoursePageProps) {
                           <FileText className="h-5 w-5 text-primary"/>
                           <span className="font-medium">Presentation Slides (PPT)</span>
                         </div>
-                        <Button variant="outline" size="sm"><Download className="mr-2 h-4 w-4"/>Download</Button>
-                      </div>
+                        <Button variant="outline" size="sm"><Download className="mr-2 h-4 w-4"/>Download</Button>                      </div>
                       <div className="flex items-center justify-between rounded-md border p-3">
                         <div className="flex items-center gap-3">
                           <FileText className="h-5 w-5 text-primary"/>
                           <span className="font-medium">Case Studies (ZIP)</span>
                         </div>
-                        <Button variant="outline" size="sm"><Download className="mr-2 h-4 w-4"/>Download</Button>
-                      </div>
+                        <Button variant="outline" size="sm"><Download className="mr-2 h-4 w-4"/>Download</Button>                      </div>
                     </div>
                   </CardContent>
                 </Card>
@@ -178,8 +193,8 @@ export default async function CoursePage({ params }: CoursePageProps) {
                       )}
                   </div>
                   <div className="flex flex-col gap-3">
-                      <Button size="lg" className="w-full"><ShoppingCart className="mr-2 h-5 w-5"/>Add to Cart</Button>
-                      <Button size="lg" variant="outline" className="w-full"><Rocket className="mr-2 h-5 w-5"/>Enroll Now</Button>
+                      <Button size="lg" className="w-full" onClick={handleAddToCart}><ShoppingCart className="mr-2 h-5 w-5"/>Add to Cart</Button>
+                      <Button size="lg" variant="outline" className="w-full" onClick={handleEnrollNow}><Rocket className="mr-2 h-5 w-5"/>Enroll Now</Button>
                   </div>
                    <div className="text-center mt-4">
                         <p className="text-xs text-muted-foreground flex items-center justify-center gap-1">
