@@ -25,8 +25,8 @@ export default function CoursePage({ params }: CoursePageProps) {
   const router = useRouter();
   const { toast } = useToast();
   
-  // The params object is directly available in client components
-  const course = courses.find((c) => c.id === params.id);
+  const { id } = params;
+  const course = courses.find((c) => c.id === id);
 
   if (!course) {
     notFound();
