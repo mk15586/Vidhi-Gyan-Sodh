@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation';
 import { Home, BookCopy, ShoppingCart, User } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { useEffect, useState } from 'react';
 
 const navItems = [
   { href: '/', icon: Home, label: 'Home' },
@@ -15,8 +16,13 @@ const navItems = [
 const BottomNav = () => {
   const pathname = usePathname();
   const isMobile = useIsMobile();
+  const [isClient, setIsClient] = useState(false);
 
-  if (!isMobile) {
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient || !isMobile) {
     return null;
   }
 
