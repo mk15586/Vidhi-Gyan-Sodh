@@ -27,7 +27,7 @@ const CourseCarousel = ({ courses }: { courses: Course[] }) => {
       <CarouselContent className="-ml-2">
         {courses.map((course) => (
           <CarouselItem key={course.id} className="basis-[90%] md:basis-1/3 lg:basis-1/4 pl-2">
-            <div className="p-1 h-full">
+            <div className="p-1">
               <CourseCard course={course} />
             </div>
           </CarouselItem>
