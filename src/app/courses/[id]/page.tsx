@@ -24,6 +24,8 @@ type CoursePageProps = {
 export default function CoursePage({ params }: CoursePageProps) {
   const router = useRouter();
   const { toast } = useToast();
+  
+  // The params object is directly available in client components
   const course = courses.find((c) => c.id === params.id);
 
   if (!course) {
@@ -40,6 +42,7 @@ export default function CoursePage({ params }: CoursePageProps) {
 
   const handleEnrollNow = () => {
     // Here you would add to cart and then navigate
+    handleAddToCart();
     router.push('/checkout');
   };
 
