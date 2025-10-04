@@ -56,20 +56,6 @@ export default function Home() {
 
   return (
     <div>
-      <section className="bg-white py-12 md:py-20">
-        <div className="container mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl font-headline font-extrabold text-primary mb-4 leading-tight">
-            Vidhi Gyan Sodh
-          </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8 font-headline">
-            Your gateway to mastering the intricacies of law, with courses designed by experts.
-          </p>
-          <Button size="lg" asChild>
-            <Link href="/courses">Explore Courses</Link>
-          </Button>
-        </div>
-      </section>
-
       <Section title="Continue Watching" href="/courses">
         <CourseCarousel courses={continueWatching} />
       </Section>
