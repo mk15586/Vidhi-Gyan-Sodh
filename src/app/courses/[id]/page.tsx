@@ -5,7 +5,7 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Star, Clock, BarChart, Users, PlayCircle, Heart, Share2, MessageSquare, ThumbsUp, Facebook, Twitter, Linkedin } from 'lucide-react';
+import { Star, Clock, BarChart, Users, PlayCircle, Heart, Share2, MessageSquare, ThumbsUp, Facebook, Twitter, Linkedin, FileText, Download } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -62,6 +62,7 @@ export default function CoursePage({ params }: CoursePageProps) {
           <Tabs defaultValue="about" className="w-full">
             <TabsList>
               <TabsTrigger value="about">About this course</TabsTrigger>
+              <TabsTrigger value="resources">Resources</TabsTrigger>
               <TabsTrigger value="comments">Comments</TabsTrigger>
               <TabsTrigger value="share">Share</TabsTrigger>
             </TabsList>
@@ -80,6 +81,43 @@ export default function CoursePage({ params }: CoursePageProps) {
                     </div>
                 </CardContent>
                </Card>
+            </TabsContent>
+            <TabsContent value="resources" className="mt-4">
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="font-headline text-xl flex items-center gap-2">
+                        <FileText className="h-5 w-5"/> Study Materials
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground mb-4">
+                      Download supplementary materials for this course.
+                    </p>
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between rounded-md border p-3">
+                        <div className="flex items-center gap-3">
+                          <FileText className="h-5 w-5 text-primary"/>
+                          <span className="font-medium">Lecture Notes (PDF)</span>
+                        </div>
+                        <Button variant="outline" size="sm"><Download className="mr-2 h-4 w-4"/>Download</Button>
+                      </div>
+                      <div className="flex items-center justify-between rounded-md border p-3">
+                        <div className="flex items-center gap-3">
+                          <FileText className="h-5 w-5 text-primary"/>
+                          <span className="font-medium">Presentation Slides (PPT)</span>
+                        </div>
+                        <Button variant="outline" size="sm"><Download className="mr-2 h-4 w-4"/>Download</Button>
+                      </div>
+                      <div className="flex items-center justify-between rounded-md border p-3">
+                        <div className="flex items-center gap-3">
+                          <FileText className="h-5 w-5 text-primary"/>
+                          <span className="font-medium">Case Studies (ZIP)</span>
+                        </div>
+                        <Button variant="outline" size="sm"><Download className="mr-2 h-4 w-4"/>Download</Button>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
             </TabsContent>
             <TabsContent value="comments" className="mt-4">
                 <Comments />
