@@ -1,5 +1,5 @@
 'use client';
-import { notFound, useRouter } from 'next/navigation';
+import { notFound, useRouter, useParams } from 'next/navigation';
 import Image from 'next/image';
 import { courses } from '@/lib/courses';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
@@ -24,8 +24,9 @@ type CoursePageProps = {
 export default function CoursePage({ params }: CoursePageProps) {
   const router = useRouter();
   const { toast } = useToast();
+  const routeParams = useParams();
   
-  const id = params.id;
+  const id = Array.isArray(routeParams.id) ? routeParams.id[0] : routeParams.id;
   const course = courses.find((c) => c.id === id);
 
   if (!course) {
