@@ -10,6 +10,7 @@ import {
   LogOut,
   BookOpen,
   X,
+  Bell,
 } from 'lucide-react';
 import {
   DropdownMenu,
@@ -66,6 +67,44 @@ const Header = () => {
             </div>
           </div>
           
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <Bell className="h-5 w-5" />
+                <span className="sr-only">Notifications</span>
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-80" align="end" alignOffset={-16}>
+              <div className="grid gap-4">
+                <div className="space-y-2">
+                  <h4 className="font-medium leading-none">Notifications</h4>
+                  <p className="text-sm text-muted-foreground">You have 3 unread messages.</p>
+                </div>
+                <Separator />
+                <div className="grid gap-4 max-h-60 overflow-y-auto">
+                    <div className="flex items-start gap-4">
+                        <div className="flex-grow">
+                            <h5 className="text-sm font-semibold leading-tight">New Course Alert!</h5>
+                            <p className="text-sm text-muted-foreground">"Advanced Criminal Law" is now available.</p>
+                        </div>
+                    </div>
+                    <div className="flex items-start gap-4">
+                        <div className="flex-grow">
+                            <h5 className="text-sm font-semibold leading-tight">Your progress</h5>
+                            <p className="text-sm text-muted-foreground">You are 50% through "Intro to Constitution".</p>
+                        </div>
+                    </div>
+                     <div className="flex items-start gap-4">
+                        <div className="flex-grow">
+                            <h5 className="text-sm font-semibold leading-tight">Discount Offer</h5>
+                            <p className="text-sm text-muted-foreground">Get 20% off on your next purchase.</p>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </PopoverContent>
+          </Popover>
+
           <Popover>
             <PopoverTrigger asChild>
               <Button variant="ghost" size="icon">
