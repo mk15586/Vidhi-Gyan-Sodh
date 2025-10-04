@@ -65,7 +65,7 @@ const Header = () => {
       <header className="rounded-xl border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-lg">
         <div className="container flex h-16 items-center">
           <Link href="/" className="flex items-center">
-              <Image src="/logo.png" alt="Vidhi Gyan Sodh Logo" width={80} height={20} priority />
+              <Image src="/logo.png" alt="Vidhi Gyan Sodh Logo" width={100} height={26} priority />
           </Link>
           <nav className="hidden md:flex items-center space-x-6 text-sm font-medium ml-10">
             {navLinks.map((link) => (
