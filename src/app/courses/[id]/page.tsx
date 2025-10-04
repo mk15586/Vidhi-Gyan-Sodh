@@ -1,8 +1,13 @@
 'use client';
 import { notFound, useRouter, useParams } from 'next/navigation';
 import Image from 'next/image';
+import React from 'react';
+
 import { courses } from '@/lib/courses';
+import type { Course } from '@/lib/types';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { useToast } from "@/hooks/use-toast";
+
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
@@ -11,22 +16,22 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import Comments from '@/components/comments';
-import { useToast } from "@/hooks/use-toast";
-import React from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
+
 
 export default function CoursePage() {
   const router = useRouter();
-  const { toast } = useToast();
   const params = useParams();
+  const { toast } = useToast();
   
-  const [course, setCourse] = React.useState<(typeof courses)[0] | null>(null);
+  const [course, setCourse] = React.useState<Course | null>(null);
   const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
-    // useParams can be an empty object on first render.
+    // useParams() can be an empty object on first render in client components.
     // We ensure we have an ID before trying to find the course.
     const id = Array.isArray(params.id) ? params.id[0] : params.id;
+
     if (id) {
       const foundCourse = courses.find((c) => c.id === id);
       if (foundCourse) {
@@ -35,11 +40,7 @@ export default function CoursePage() {
         // If the ID exists but no course is found, trigger a 404
         notFound();
       }
-    }
-    // Only set loading to false after we've attempted to find the course
-    // or if the id is present.
-    if(id) {
-      setLoading(false);
+       setLoading(false);
     }
   }, [params.id]);
 
@@ -63,18 +64,21 @@ export default function CoursePage() {
   if (loading || !course) {
     return (
         <div className="container mx-auto py-12 px-4">
-            <div className="space-y-4">
-                <Skeleton className="h-10 w-1/4" />
-                <Skeleton className="h-8 w-3/4" />
-                <Skeleton className="h-8 w-1/2" />
-                <div className="grid lg:grid-cols-3 gap-12 pt-8">
-                    <div className="lg:col-span-2 space-y-8">
-                        <Skeleton className="h-48 w-full" />
-                        <Skeleton className="h-96 w-full" />
+            <div className="grid lg:grid-cols-3 gap-12">
+                <div className="lg:col-span-2 space-y-8">
+                    <Skeleton className="h-12 w-3/4" />
+                    <Skeleton className="h-8 w-1/2" />
+                    <div className="flex gap-4">
+                        <Skeleton className="h-10 w-24" />
+                        <Skeleton className="h-10 w-24" />
+                        <Skeleton className="h-10 w-24" />
                     </div>
-                    <div className="lg:col-span-1">
-                        <Skeleton className="h-96 w-full" />
-                    </div>
+                    <Skeleton className="h-96 w-full" />
+                </div>
+                <div className="lg:col-span-1 space-y-4">
+                    <Skeleton className="h-48 w-full" />
+                    <Skeleton className="h-12 w-full" />
+                    <Skeleton className="h-12 w-full" />
                 </div>
             </div>
         </div>
