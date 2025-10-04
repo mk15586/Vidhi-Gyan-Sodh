@@ -7,6 +7,7 @@ import { courses } from '@/lib/courses';
 import Image from 'next/image';
 import Link from 'next/link';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 export default function CheckoutPage() {
   const cartItems = courses.slice(0, 3);
@@ -22,32 +23,51 @@ export default function CheckoutPage() {
           <Card>
             <CardHeader>
               <CardTitle className="font-headline">Payment Information</CardTitle>
-              <CardDescription>Enter your payment details to complete the purchase.</CardDescription>
+              <CardDescription>Select a payment method to complete the purchase.</CardDescription>
             </CardHeader>
-            <CardContent className="grid gap-6">
-              <div className="grid gap-2">
-                <Label htmlFor="name">Name on Card</Label>
-                <Input id="name" placeholder="John Doe" />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="card-number">Card Number</Label>
-                <Input id="card-number" placeholder="**** **** **** 1234" />
-              </div>
-              <div className="grid grid-cols-3 gap-4">
-                <div className="grid gap-2">
-                  <Label htmlFor="expiry-month">Expires</Label>
-                  <Input id="expiry-month" placeholder="MM" />
-                </div>
-                <div className="grid gap-2">
-                  <Label htmlFor="expiry-year" className="invisible">Year</Label>
-                  <Input id="expiry-year" placeholder="YY" />
-                </div>
-                <div className="grid gap-2">
-                  <Label htmlFor="cvc">CVC</Label>
-                  <Input id="cvc" placeholder="123" />
-                </div>
-              </div>
-              <Button size="lg" className="w-full">Pay ₹{total.toFixed(2)}</Button>
+            <CardContent>
+              <Tabs defaultValue="card" className="w-full">
+                <TabsList className="grid w-full grid-cols-2">
+                  <TabsTrigger value="card">Credit/Debit Card</TabsTrigger>
+                  <TabsTrigger value="upi">UPI</TabsTrigger>
+                </TabsList>
+                <TabsContent value="card" className="pt-6">
+                   <div className="grid gap-6">
+                    <div className="grid gap-2">
+                      <Label htmlFor="name">Name on Card</Label>
+                      <Input id="name" placeholder="John Doe" />
+                    </div>
+                    <div className="grid gap-2">
+                      <Label htmlFor="card-number">Card Number</Label>
+                      <Input id="card-number" placeholder="**** **** **** 1234" />
+                    </div>
+                    <div className="grid grid-cols-3 gap-4">
+                      <div className="grid gap-2">
+                        <Label htmlFor="expiry-month">Expires</Label>
+                        <Input id="expiry-month" placeholder="MM" />
+                      </div>
+                      <div className="grid gap-2">
+                        <Label htmlFor="expiry-year" className="invisible">Year</Label>
+                        <Input id="expiry-year" placeholder="YY" />
+                      </div>
+                      <div className="grid gap-2">
+                        <Label htmlFor="cvc">CVC</Label>
+                        <Input id="cvc" placeholder="123" />
+                      </div>
+                    </div>
+                    <Button size="lg" className="w-full">Pay ₹{total.toFixed(2)}</Button>
+                  </div>
+                </TabsContent>
+                <TabsContent value="upi" className="pt-6">
+                  <div className="grid gap-4">
+                    <div className="grid gap-2">
+                      <Label htmlFor="upi-id">UPI ID</Label>
+                      <Input id="upi-id" placeholder="yourname@upi" />
+                    </div>
+                     <Button size="lg" className="w-full">Pay ₹{total.toFixed(2)}</Button>
+                  </div>
+                </TabsContent>
+              </Tabs>
             </CardContent>
           </Card>
         </div>
