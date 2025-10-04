@@ -28,7 +28,7 @@ const BottomNav = () => {
 
   return (
     <>
-      <div className="fixed bottom-4 left-0 right-0 z-50 h-16 px-4 md:hidden">
+      <div className="fixed bottom-2 left-0 right-0 z-50 h-16 px-4 md:hidden">
         <nav className="relative flex h-full items-center justify-around rounded-full border bg-background/90 p-2 shadow-lg backdrop-blur-sm">
           {navItems.map(({ href, icon: Icon, label }) => {
             const isActive = (pathname === '/' && href === '/') || (href !== '/' && pathname.startsWith(href));
