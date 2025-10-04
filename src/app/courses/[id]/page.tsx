@@ -13,22 +13,15 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import Comments from '@/components/comments';
 import { useToast } from "@/hooks/use-toast";
 
-
-type CoursePageProps = {
-  params: {
-    id: string;
-  };
-};
-
-export default function CoursePage({ params }: CoursePageProps) {
+export default function CoursePage() {
   const router = useRouter();
   const { toast } = useToast();
-  const routeParams = useParams();
+  const params = useParams();
   
-  const id = Array.isArray(routeParams.id) ? routeParams.id[0] : routeParams.id;
+  const id = params?.id;
   const course = courses.find((c) => c.id === id);
 
-  if (!course) {
+  if (!id || !course) {
     notFound();
   }
 
