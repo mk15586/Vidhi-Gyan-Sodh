@@ -1,3 +1,136 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "user-avatar-1",
+      "description": "User avatar",
+      "imageUrl": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxwZXJzb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NTk1MDY2MzN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "course-thumb-1",
+      "description": "Course thumbnail",
+      "imageUrl": "https://images.unsplash.com/photo-1575282343536-469af953c6e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxsYXclMjBib29rfGVufDB8fHx8MTc1OTU3MjMwNXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "law book"
+    },
+    {
+      "id": "course-thumb-2",
+      "description": "Course thumbnail",
+      "imageUrl": "https://images.unsplash.com/photo-1711003596872-aa68f08a4b8e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjb3VydHJvb20lMjBnYXZlbHxlbnwwfHx8fDE3NTk1MDQzMTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "courtroom gavel"
+    },
+    {
+      "id": "course-thumb-3",
+      "description": "Course thumbnail",
+      "imageUrl": "https://images.unsplash.com/photo-1485322551133-3a4c27a9d925?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxsaWJyYXJ5JTIwYm9va3N8ZW58MHx8fHwxNzU5NDU3Nzg3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "library books"
+    },
+    {
+      "id": "course-thumb-4",
+      "description": "Course thumbnail",
+      "imageUrl": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxsZWdhbCUyMGRvY3VtZW50c3xlbnwwfHx8fDE3NTk1MzY1Nzh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "legal documents"
+    },
+    {
+      "id": "course-thumb-5",
+      "description": "Course thumbnail",
+      "imageUrl": "https://images.unsplash.com/photo-1642799819318-affd75302ba8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxzdGF0dWUlMjBqdXN0aWNlfGVufDB8fHx8MTc1OTU3MjMwNXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "statue justice"
+    },
+    {
+      "id": "course-thumb-6",
+      "description": "Course thumbnail",
+      "imageUrl": "https://images.unsplash.com/photo-1554616158-ffbee4059190?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y291cnQlMjBidWlsZGluZ3xlbnwwfHx8fDE3NTk1MDA1MDh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "court building"
+    },
+    {
+      "id": "course-thumb-7",
+      "description": "Course thumbnail",
+      "imageUrl": "https://images.unsplash.com/photo-1704511618479-b7d95feab8d4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxsYXd5ZXIlMjBicmllZmNhc2V8ZW58MHx8fHwxNzU5NTcyMzA1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "lawyer briefcase"
+    },
+    {
+      "id": "course-thumb-8",
+      "description": "Course thumbnail",
+      "imageUrl": "https://images.unsplash.com/photo-1664463760781-f159dfe3af30?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxzaWduaW5nJTIwY29udHJhY3R8ZW58MHx8fHwxNzU5NTUwNDk2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "signing contract"
+    },
+    {
+      "id": "course-thumb-9",
+      "description": "Course thumbnail",
+      "imageUrl": "https://images.unsplash.com/photo-1702628771524-25d5174e919b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxqdWRnZSUyMGRlc2t8ZW58MHx8fHwxNzU5NTcyMzA1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "judge desk"
+    },
+    {
+      "id": "course-thumb-10",
+      "description": "Course thumbnail",
+      "imageUrl": "https://images.unsplash.com/photo-1590099543482-3b3d3083a474?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxsYXclMjBzY2FsZXxlbnwwfHx8fDE3NTk1NzIzMDV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "law scale"
+    },
+    {
+      "id": "course-thumb-11",
+      "description": "Course thumbnail",
+      "imageUrl": "https://images.unsplash.com/photo-1595327526317-f4754dd9d079?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxsYXclMjBzdHVkZW50fGVufDB8fHx8MTc1OTU3MjMwNXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "law student"
+    },
+    {
+      "id": "course-thumb-12",
+      "description": "Course thumbnail",
+      "imageUrl": "https://images.unsplash.com/photo-1724690683771-14c5c08bb5be?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxkZWJhdGUlMjBhcmd1bWVudHxlbnwwfHx8fDE3NTk1NzIzMDV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "debate argument"
+    },
+    {
+      "id": "course-thumb-13",
+      "description": "Course thumbnail",
+      "imageUrl": "https://images.unsplash.com/photo-1735093070249-015b4f05baff?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxwYXJsaWFtZW50JTIwYnVpbGRpbmd8ZW58MHx8fHwxNzU5NTAwOTYyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "parliament building"
+    },
+    {
+      "id": "course-thumb-14",
+      "description": "Course thumbnail",
+      "imageUrl": "https://images.unsplash.com/photo-1622997151872-6efdfe3dee24?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjb25zdGl0dXRpb24lMjBkb2N1bWVudHxlbnwwfHx8fDE3NTk1NzIzMDV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "constitution document"
+    },
+    {
+      "id": "course-thumb-15",
+      "description": "Course thumbnail",
+      "imageUrl": "https://images.unsplash.com/photo-1633158108216-f10cd3202d8a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxsZWdhbCUyMHJlc2VhcmNofGVufDB8fHx8MTc1OTU3MjMwNXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "legal research"
+    },
+    {
+      "id": "course-thumb-16",
+      "description": "Course thumbnail",
+      "imageUrl": "https://images.unsplash.com/photo-1620662736427-b8a198f52a4d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bGF3eWVyJTIwb2ZmaWNlfGVufDB8fHx8MTc1OTQ4MzkzMnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "lawyer office"
+    },
+    {
+      "id": "course-thumb-17",
+      "description": "Course thumbnail",
+      "imageUrl": "https://images.unsplash.com/photo-1695896756089-c015a293ee39?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjb3VydCUyMHNrZXRjaHxlbnwwfHx8fDE3NTk1NzIzMDV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "court sketch"
+    },
+    {
+      "id": "course-thumb-18",
+      "description": "Course thumbnail",
+      "imageUrl": "https://images.unsplash.com/photo-1579296440601-efe78a19fa91?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxodW1hbiUyMHJpZ2h0c3xlbnwwfHx8fDE3NTk1NzIzMDV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "human rights"
+    },
+    {
+      "id": "course-thumb-19",
+      "description": "Course thumbnail",
+      "imageUrl": "https://images.unsplash.com/photo-1627042013784-8483742812d1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxjeWJlciUyMGxhd3xlbnwwfHx8fDE3NTk1NzIzMDV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "cyber law"
+    },
+    {
+      "id": "course-thumb-20",
+      "description": "Course thumbnail",
+      "imageUrl": "https://images.unsplash.com/photo-1569163139599-0f4517e36f51?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxlbnZpcm9ubWVudGFsJTIwbGF3fGVufDB8fHx8MTc1OTU3MjMwNXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "environmental law"
+    },
+    {
+      "id": "course-video-placeholder",
+      "description": "Video player placeholder",
+      "imageUrl": "https://images.unsplash.com/photo-1758541213979-fe8c9996e197?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjb3VydHJvb20lMjBpbnRlcmlvcnxlbnwwfHx8fDE3NTk1NzIzMDZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "courtroom interior"
+    }
+  ]
 }
