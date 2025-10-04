@@ -21,10 +21,11 @@ type CoursePageProps = {
   };
 };
 
-export default function CoursePage({ params: { id } }: CoursePageProps) {
+export default function CoursePage({ params }: CoursePageProps) {
   const router = useRouter();
   const { toast } = useToast();
   
+  const id = params.id;
   const course = courses.find((c) => c.id === id);
 
   if (!course) {
