@@ -2,95 +2,131 @@
 import React from 'react';
 import CourseCard from '@/components/course-card';
 import { courses } from '@/lib/courses';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Search } from 'lucide-react';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
+import type { Course } from '@/lib/types';
+import { Badge } from '@/components/ui/badge';
+
+const CourseCarousel = ({ courses }: { courses: Course[] }) => {
+  return (
+    <Carousel
+      opts={{
+        align: 'start',
+        loop: false,
+      }}
+      className="w-full"
+    >
+      <CarouselContent className="-ml-2">
+        {courses.map((course) => (
+          <CarouselItem key={course.id} className="basis-[90%] md:basis-1/3 lg:basis-1/4 pl-2">
+            <div className="p-1 h-full">
+              <CourseCard course={course} />
+            </div>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious className="hidden md:flex" />
+      <CarouselNext className="hidden md:flex" />
+    </Carousel>
+  );
+};
+
 
 export default function CoursesPage() {
-  const categories = [...new Set(courses.map(course => course.category))];
-  const [selectedCourses, setSelectedCourses] = React.useState<string[]>([]);
+  const [searchTerm, setSearchTerm] = React.useState('');
+  const [selectedCategory, setSelectedCategory] = React.useState<string | null>(null);
 
-  const handleSelectCourse = (courseId: string) => {
-    setSelectedCourses(prev =>
-      prev.includes(courseId)
-        ? prev.filter(id => id !== courseId)
-        : [...prev, courseId]
-    );
-  };
-  
-  const handleEnroll = () => {
-    // For now, we'll just log the selected courses to the console.
-    console.log("Enrolling in:", selectedCourses);
-    alert(`Enrolling in ${selectedCourses.length} course(s).`);
-  };
+  const categories = [...new Set(courses.map(course => course.category))];
+
+  const coursesByCategory = categories.reduce((acc, category) => {
+    acc[category] = courses.filter(course => course.category === category);
+    return acc;
+  }, {} as Record<string, Course[]>);
+
+  const filteredCategories = React.useMemo(() => {
+    let filtered = categories;
+    if (selectedCategory) {
+        filtered = filtered.filter(c => c === selectedCategory)
+    }
+
+    if (searchTerm) {
+        const lowercasedSearch = searchTerm.toLowerCase();
+        return filtered.filter(category => {
+            const categoryMatch = category.toLowerCase().includes(lowercasedSearch);
+            const courseMatch = coursesByCategory[category].some(course => 
+                course.title.toLowerCase().includes(lowercasedSearch) || 
+                course.instructor.toLowerCase().includes(lowercasedSearch)
+            );
+            return categoryMatch || courseMatch;
+        });
+    }
+
+    return filtered;
+  }, [searchTerm, selectedCategory, categories, coursesByCategory]);
+
+  const handleCategoryClick = (category: string) => {
+    setSelectedCategory(prev => prev === category ? null : category);
+  }
 
   return (
     <div className="container mx-auto py-8 px-4">
       <div className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-headline font-bold text-primary">Our Courses</h1>
+        <h1 className="text-4xl md:text-5xl font-headline font-bold text-primary">Explore Our Courses</h1>
         <p className="text-lg text-muted-foreground mt-2 max-w-2xl mx-auto">
-          Explore our comprehensive catalog of law courses, from foundational principles to advanced specializations.
+          Find your next legal challenge from our comprehensive catalog.
         </p>
       </div>
       
-      <div className="mb-8 flex flex-col md:flex-row gap-4">
-        <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-          <Input placeholder="Search courses..." className="pl-10" />
+      <div className="mb-8 flex flex-col gap-6">
+        <div className="relative mx-auto w-full max-w-xl">
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+          <Input 
+            placeholder="Search for courses, categories, or instructors..." 
+            className="pl-12 h-12 text-base rounded-full shadow-md"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
         </div>
-        <div className="flex gap-4">
-          <Select>
-            <SelectTrigger className="w-full md:w-[180px]">
-              <SelectValue placeholder="Category" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All Categories</SelectItem>
-              {categories.map(category => (
-                <SelectItem key={category} value={category.toLowerCase().replace(' ', '-')}>
-                  {category}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          <Select>
-            <SelectTrigger className="w-full md:w-[180px]">
-              <SelectValue placeholder="Sort by" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="relevance">Relevance</SelectItem>
-              <SelectItem value="popular">Popularity</SelectItem>
-              <SelectItem value="newest">Newest</SelectItem>
-              <SelectItem value="price-asc">Price: Low to High</SelectItem>
-              <SelectItem value="price-desc">Price: High to Low</SelectItem>
-            </SelectContent>
-          </Select>
+        <div className="flex flex-wrap items-center justify-center gap-2">
+            <Badge 
+                onClick={() => setSelectedCategory(null)}
+                variant={selectedCategory === null ? 'default' : 'secondary'}
+                className="cursor-pointer text-sm px-4 py-2"
+            >
+                All Categories
+            </Badge>
+          {categories.map(category => (
+            <Badge 
+              key={category}
+              onClick={() => handleCategoryClick(category)}
+              variant={selectedCategory === category ? 'default' : 'secondary'}
+              className="cursor-pointer text-sm px-4 py-2"
+            >
+              {category}
+            </Badge>
+          ))}
         </div>
       </div>
-       {selectedCourses.length > 0 && (
-        <div className="mb-8 flex justify-end">
-          <Button onClick={handleEnroll} size="lg">
-            Enroll in {selectedCourses.length} Selected Course{selectedCourses.length > 1 ? 's' : ''}
-          </Button>
-        </div>
-      )}
 
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {courses.map((course) => (
-          <CourseCard 
-            key={course.id} 
-            course={course}
-            showCheckbox={true}
-            isSelected={selectedCourses.includes(course.id)}
-            onSelectChange={() => handleSelectCourse(course.id)}
-          />
-        ))}
+      <div className="space-y-12">
+        {filteredCategories.length > 0 ? filteredCategories.map(category => (
+          <section key={category}>
+            <h2 className="text-2xl md:text-3xl font-headline font-bold text-primary mb-4">{category}</h2>
+            <CourseCarousel courses={coursesByCategory[category]} />
+          </section>
+        )) : (
+            <div className="text-center py-16">
+                <p className="text-xl text-muted-foreground">No courses found matching your criteria.</p>
+            </div>
+        )}
       </div>
     </div>
   );
