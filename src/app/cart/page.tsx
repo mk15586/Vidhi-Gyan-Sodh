@@ -15,7 +15,7 @@ export default function CartPage() {
 
   return (
     <div className="container mx-auto py-12 px-4">
-      <h1 className="text-3xl md:text-4xl font-headline font-bold text-primary text-center mb-8">Shopping Cart</h1>
+      <h1 className="text-3xl md:text-4xl font-headline font-bold text-primary text-center mb-8">Enroll Your Courses</h1>
       <div className="grid md:grid-cols-3 gap-8">
         <div className="md:col-span-2">
           <Card>
