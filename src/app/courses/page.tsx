@@ -78,13 +78,6 @@ export default function CoursesPage() {
 
   return (
     <div className="container mx-auto py-8 px-4">
-      <div className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-headline font-bold text-primary">Explore Our Courses</h1>
-        <p className="text-lg text-muted-foreground mt-2 max-w-2xl mx-auto">
-          Find your next legal challenge from our comprehensive catalog.
-        </p>
-      </div>
-      
       <div className="mb-8 flex flex-col gap-6">
         <div className="relative mx-auto w-full max-w-xl">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
