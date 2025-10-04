@@ -7,9 +7,11 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 import { Button } from '@/components/ui/button';
-import { courses, Course } from '@/lib/courses';
+import { courses } from '@/lib/courses';
 import CourseCard from '@/components/course-card';
 import { ArrowRight } from 'lucide-react';
+import type { Course } from '@/lib/types';
+
 
 const Section = ({ title, children, href }: { title: string, children: React.ReactNode, href: string }) => (
   <section className="py-8 md:py-12">
@@ -31,13 +33,12 @@ const CourseCarousel = ({ courses }: { courses: Course[] }) => (
   <Carousel
     opts={{
       align: 'start',
-      loop: true,
     }}
     className="w-full"
   >
-    <CarouselContent>
+    <CarouselContent className="-ml-2">
       {courses.map((course) => (
-        <CarouselItem key={course.id} className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+        <CarouselItem key={course.id} className="basis-[90%] md:basis-1/3 lg:basis-1/4 pl-2">
           <div className="p-1">
             <CourseCard course={course} />
           </div>
