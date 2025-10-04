@@ -12,18 +12,33 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import Comments from '@/components/comments';
 import { useToast } from "@/hooks/use-toast";
+import React from 'react';
 
 export default function CoursePage() {
   const router = useRouter();
   const { toast } = useToast();
   const params = useParams();
   
-  const id = params?.id;
-  const course = courses.find((c) => c.id === id);
+  const id = Array.isArray(params.id) ? params.id[0] : params.id;
 
-  if (!id || !course) {
-    notFound();
+  const [course, setCourse] = React.useState<(typeof courses)[0] | undefined>(undefined);
+
+  React.useEffect(() => {
+    if (id) {
+      const foundCourse = courses.find((c) => c.id === id);
+      if (foundCourse) {
+        setCourse(foundCourse);
+      } else {
+        notFound();
+      }
+    }
+  }, [id]);
+
+  if (!course) {
+    // You can return a loading spinner here while the course is being found.
+    return <div>Loading...</div>;
   }
+
 
   const handleAddToCart = () => {
     toast({
