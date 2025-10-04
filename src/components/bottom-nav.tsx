@@ -28,8 +28,8 @@ const BottomNav = () => {
 
   return (
     <>
-      <nav className="fixed bottom-0 left-0 right-0 z-50 border-t bg-background md:hidden">
-        <div className="container mx-auto flex h-16 justify-around">
+      <div className="fixed bottom-0 left-0 right-0 z-50 h-24 px-4 md:hidden">
+        <nav className="relative flex h-16 items-center justify-around rounded-full border bg-background/90 p-2 shadow-lg backdrop-blur-sm">
           {navItems.map(({ href, icon: Icon, label }) => {
             const isActive = (pathname === '/' && href === '/') || (href !== '/' && pathname.startsWith(href));
             return (
@@ -37,17 +37,28 @@ const BottomNav = () => {
                 key={href}
                 href={href}
                 className={cn(
-                  'flex w-full flex-col items-center justify-center text-sm font-medium transition-colors',
-                  isActive ? 'text-primary' : 'text-muted-foreground hover:text-primary'
+                  'relative z-10 flex h-12 flex-1 flex-col items-center justify-center rounded-full text-sm font-medium outline-none transition-all duration-300',
+                  isActive
+                    ? 'text-primary-foreground'
+                    : 'text-muted-foreground hover:text-primary',
+                  'focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background'
                 )}
               >
-                <Icon className="mb-1 h-6 w-6" />
-                <span>{label}</span>
+                <div className={cn(
+                    "absolute inset-0 -z-10 rounded-full bg-primary transition-transform duration-300 ease-in-out",
+                    isActive ? "scale-100" : "scale-0"
+                )}></div>
+                <Icon className="h-5 w-5" />
+                <span className={cn(
+                    "text-xs transition-opacity duration-200",
+                    isActive ? "opacity-100" : "opacity-0"
+                )}>{label}</span>
+                 {!isActive && <span className="sr-only">{label}</span>}
               </Link>
             );
           })}
-        </div>
-      </nav>
+        </nav>
+      </div>
       {/* Spacer for bottom nav */}
       <div className="h-16 md:hidden" />
     </>
