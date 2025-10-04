@@ -11,6 +11,7 @@ import {
   BookOpen,
   X,
   Bell,
+  Check,
 } from 'lucide-react';
 import {
   DropdownMenu,
@@ -31,6 +32,7 @@ import Logo from '@/components/logo';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { courses } from '@/lib/courses';
 import { Separator } from './ui/separator';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from './ui/card';
 
 const navLinks = [
   { href: '/courses', label: 'Courses' },
@@ -43,6 +45,15 @@ const userAvatar = PlaceHolderImages.find(img => img.id === 'user-avatar-1');
 const Header = () => {
   const cartItems = courses.slice(0, 3);
   const subtotal = cartItems.reduce((acc, item) => acc + item.price, 0);
+
+  const notifications = [
+      { id: 1, title: 'New Course Alert!', description: '"Advanced Criminal Law" is now available.', read: false },
+      { id: 2, title: 'Your progress', description: 'You are 50% through "Intro to Constitution".', read: false },
+      { id: 3, title: 'Discount Offer', description: 'Get 20% off on your next purchase.', read: true },
+  ]
+  const unreadCount = notifications.filter(n => !n.read).length;
+
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
@@ -69,39 +80,45 @@ const Header = () => {
           
           <Popover>
             <PopoverTrigger asChild>
-              <Button variant="ghost" size="icon">
+              <Button variant="ghost" size="icon" className="relative">
                 <Bell className="h-5 w-5" />
+                {unreadCount > 0 && (
+                  <span className="absolute top-0 right-0 flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                  </span>
+                )}
                 <span className="sr-only">Notifications</span>
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-80" align="end" alignOffset={-16}>
-              <div className="grid gap-4">
-                <div className="space-y-2">
-                  <h4 className="font-medium leading-none">Notifications</h4>
-                  <p className="text-sm text-muted-foreground">You have 3 unread messages.</p>
-                </div>
-                <Separator />
-                <div className="grid gap-4 max-h-60 overflow-y-auto">
-                    <div className="flex items-start gap-4">
-                        <div className="flex-grow">
-                            <h5 className="text-sm font-semibold leading-tight">New Course Alert!</h5>
-                            <p className="text-sm text-muted-foreground">"Advanced Criminal Law" is now available.</p>
-                        </div>
+            <PopoverContent className="w-96 p-0" align="end">
+               <Card className="border-0 shadow-none">
+                <CardHeader className="flex flex-row items-center justify-between">
+                    <div className="space-y-1">
+                        <CardTitle className="font-headline text-lg">Notifications</CardTitle>
+                        <CardDescription>You have {unreadCount} unread messages.</CardDescription>
                     </div>
-                    <div className="flex items-start gap-4">
-                        <div className="flex-grow">
-                            <h5 className="text-sm font-semibold leading-tight">Your progress</h5>
-                            <p className="text-sm text-muted-foreground">You are 50% through "Intro to Constitution".</p>
-                        </div>
+                     <Button variant="ghost" size="sm">Mark all as read</Button>
+                </CardHeader>
+                <CardContent className="p-0">
+                    <div className="divide-y divide-border max-h-80 overflow-y-auto">
+                        {notifications.map(notification => (
+                            <div key={notification.id} className={`p-4 hover:bg-muted/50 ${!notification.read ? 'bg-primary/5' : ''}`}>
+                                <div className="flex items-start gap-3">
+                                    {!notification.read && <div className="h-2 w-2 rounded-full bg-primary mt-2"></div>}
+                                    <div className="flex-1 ml-3">
+                                        <p className="font-semibold text-sm leading-tight">{notification.title}</p>
+                                        <p className="text-sm text-muted-foreground">{notification.description}</p>
+                                    </div>
+                                    <Button variant="ghost" size="icon" className="h-7 w-7 text-muted-foreground">
+                                        <Check className="h-4 w-4"/>
+                                    </Button>
+                                </div>
+                            </div>
+                        ))}
                     </div>
-                     <div className="flex items-start gap-4">
-                        <div className="flex-grow">
-                            <h5 className="text-sm font-semibold leading-tight">Discount Offer</h5>
-                            <p className="text-sm text-muted-foreground">Get 20% off on your next purchase.</p>
-                        </div>
-                    </div>
-                </div>
-              </div>
+                </CardContent>
+              </Card>
             </PopoverContent>
           </Popover>
 
