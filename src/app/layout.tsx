@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 import Header from '@/components/header';
 import BottomNav from '@/components/bottom-nav';
 import { Toaster } from "@/components/ui/toaster"
+import { ThemeProvider } from '@/components/theme-provider';
 
 
 export const metadata: Metadata = {
@@ -17,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full">
+    <html lang="en" className="h-full" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -29,10 +30,17 @@ export default function RootLayout({
           'flex min-h-screen flex-col'
         )}
       >
-        <Header />
-        <main className="flex-1 overflow-y-auto">{children}</main>
-        <BottomNav />
-        <Toaster />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Header />
+          <main className="flex-1 overflow-y-auto">{children}</main>
+          <BottomNav />
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );

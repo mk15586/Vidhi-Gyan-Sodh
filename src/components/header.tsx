@@ -12,6 +12,8 @@ import {
   X,
   Bell,
   Check,
+  Moon,
+  Sun,
 } from 'lucide-react';
 import {
   DropdownMenu,
@@ -20,6 +22,9 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
+  DropdownMenuSub,
+  DropdownMenuSubTrigger,
+  DropdownMenuSubContent,
 } from '@/components/ui/dropdown-menu';
 import {
   Popover,
@@ -32,6 +37,7 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { courses } from '@/lib/courses';
 import { Separator } from './ui/separator';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from './ui/card';
+import { useTheme } from 'next-themes';
 
 const navLinks = [
   { href: '/courses', label: 'Courses' },
@@ -42,6 +48,7 @@ const navLinks = [
 const userAvatar = PlaceHolderImages.find(img => img.id === 'user-avatar-1');
 
 const Header = () => {
+  const { setTheme } = useTheme();
   const cartItems = courses.slice(0, 3);
   const subtotal = cartItems.reduce((acc, item) => acc + item.price, 0);
 
@@ -204,6 +211,24 @@ const Header = () => {
                 <Link href="/account"><Heart className="mr-2 h-4 w-4" />Wishlist</Link>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
+               <DropdownMenuSub>
+                <DropdownMenuSubTrigger>
+                  <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                  <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                  <span className="ml-2">Toggle theme</span>
+                </DropdownMenuSubTrigger>
+                <DropdownMenuSubContent>
+                  <DropdownMenuItem onClick={() => setTheme("light")}>
+                    Light
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => setTheme("dark")}>
+                    Dark
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => setTheme("system")}>
+                    System
+                  </DropdownMenuItem>
+                </DropdownMenuSubContent>
+              </DropdownMenuSub>
                <DropdownMenuItem asChild>
                 <Link href="/account"><Settings className="mr-2 h-4 w-4" />Settings</Link>
               </DropdownMenuItem>
