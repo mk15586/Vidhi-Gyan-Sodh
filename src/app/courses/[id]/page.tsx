@@ -5,7 +5,7 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Star, Clock, BarChart, Users, PlayCircle, Heart, Share2, MessageSquare, ThumbsUp, Facebook, Twitter, Linkedin, FileText, Download } from 'lucide-react';
+import { Star, Clock, BarChart, Users, PlayCircle, Heart, Share2, MessageSquare, ThumbsUp, Facebook, Twitter, Linkedin, FileText, Download, BadgeCheck, ShoppingCart, Rocket } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -142,7 +142,7 @@ export default async function CoursePage({ params }: CoursePageProps) {
 
         {/* Playlist Sidebar */}
         <div className="lg:col-span-1">
-          <div className="sticky top-20">
+          <div className="sticky top-20 space-y-6">
              <Card>
                 <CardHeader>
                   <CardTitle className="font-headline">Course Playlist</CardTitle>
@@ -168,18 +168,26 @@ export default async function CoursePage({ params }: CoursePageProps) {
                   </Accordion>
                 </CardContent>
               </Card>
-              <div className="mt-6 text-center">
-                  <div className="mb-4">
-                      <span className="text-3xl font-bold text-primary">₹{course.price}</span>
+
+              <Card>
+                <CardContent className="pt-6">
+                    <div className="flex items-baseline justify-center gap-2 mb-4">
+                      <span className="text-4xl font-bold text-primary">₹{course.price}</span>
                       {course.originalPrice && (
-                          <span className="ml-2 text-lg text-muted-foreground line-through">₹{course.originalPrice}</span>
+                          <span className="text-xl text-muted-foreground line-through">₹{course.originalPrice}</span>
                       )}
                   </div>
-                  <div className="flex flex-col gap-2">
-                      <Button size="lg" className="w-full">Add to Cart</Button>
-                      <Button size="lg" variant="outline" className="w-full">Enroll Now</Button>
+                  <div className="flex flex-col gap-3">
+                      <Button size="lg" className="w-full"><ShoppingCart className="mr-2 h-5 w-5"/>Add to Cart</Button>
+                      <Button size="lg" variant="outline" className="w-full"><Rocket className="mr-2 h-5 w-5"/>Enroll Now</Button>
                   </div>
-              </div>
+                   <div className="text-center mt-4">
+                        <p className="text-xs text-muted-foreground flex items-center justify-center gap-1">
+                            <BadgeCheck className="h-4 w-4 text-green-500" /> 30-Day Money-Back Guarantee
+                        </p>
+                    </div>
+                </CardContent>
+              </Card>
           </div>
         </div>
       </div>
