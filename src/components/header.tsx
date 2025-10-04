@@ -28,7 +28,6 @@ import {
 } from '@/components/ui/popover';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import Logo from '@/components/logo';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { courses } from '@/lib/courses';
 import { Separator } from './ui/separator';
@@ -57,7 +56,9 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
-        <Logo />
+        <Link href="/" className="flex items-center">
+            <Image src="/logo.png" alt="Vidhi Gyan Sodh Logo" width={150} height={40} priority />
+        </Link>
         <nav className="hidden md:flex items-center space-x-6 text-sm font-medium ml-10">
           {navLinks.map((link) => (
             <Link

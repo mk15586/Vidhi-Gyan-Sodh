@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -9,7 +10,6 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import Logo from '@/components/logo';
 
 export default function LoginPage() {
   return (
@@ -17,7 +17,9 @@ export default function LoginPage() {
       <Card className="mx-auto w-full max-w-sm">
         <CardHeader className="text-center">
             <div className="flex justify-center mb-4">
-                 <Logo />
+                 <Link href="/">
+                    <Image src="/logo.png" alt="Vidhi Gyan Sodh Logo" width={150} height={40} priority />
+                 </Link>
             </div>
           <CardTitle className="text-2xl font-headline">Welcome Back</CardTitle>
           <CardDescription>
