@@ -28,8 +28,6 @@ export default function CoursePage() {
   const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
-    // useParams() can be an empty object on first render in client components.
-    // We ensure we have an ID before trying to find the course.
     const id = Array.isArray(params.id) ? params.id[0] : params.id;
 
     if (id) {
@@ -37,7 +35,6 @@ export default function CoursePage() {
       if (foundCourse) {
         setCourse(foundCourse);
       } else {
-        // If the ID exists but no course is found, trigger a 404
         notFound();
       }
        setLoading(false);
@@ -51,16 +48,13 @@ export default function CoursePage() {
       title: "Added to Cart!",
       description: `"${course.title}" has been added to your cart.`,
     });
-    // Here you would typically add the course to a global cart state
   };
 
   const handleEnrollNow = () => {
-    // Here you would add to cart and then navigate
     handleAddToCart();
     router.push('/checkout');
   };
   
-  // Render a loading state until the course has been found.
   if (loading || !course) {
     return (
         <div className="container mx-auto py-12 px-4">
