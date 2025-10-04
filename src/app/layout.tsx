@@ -30,7 +30,7 @@ export default function RootLayout({
         )}
       >
         <Header />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 overflow-y-auto">{children}</main>
         <BottomNav />
         <Toaster />
       </body>
