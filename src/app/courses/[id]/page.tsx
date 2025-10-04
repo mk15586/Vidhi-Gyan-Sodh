@@ -99,6 +99,7 @@ export default function CoursePage({ params }: CoursePageProps) {
                 </div>
                 <div className="flex flex-col gap-2">
                     <Button size="lg" className="w-full">Add to Cart</Button>
+                    <Button size="lg" variant="outline" className="w-full">Enroll Now</Button>
                     <Button size="lg" variant="outline" className="w-full">
                       <Heart className="mr-2 h-4 w-4" /> Add to Wishlist
                     </Button>
