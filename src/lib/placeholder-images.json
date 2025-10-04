@@ -127,6 +127,30 @@
       "imageHint": "environmental law"
     },
     {
+      "id": "course-thumb-21",
+      "description": "Course thumbnail for Media Law",
+      "imageUrl": "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtZWRpYSUyMG5ld3N8ZW58MHx8fHwxNzU5NTczMDAwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "media news"
+    },
+    {
+      "id": "course-thumb-22",
+      "description": "Course thumbnail for Real Estate Law",
+      "imageUrl": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxyZWFsJTIwZXN0YXRlfGVufDB8fHx8MTc1OTU3MzAwMHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "real estate"
+    },
+    {
+      "id": "course-thumb-23",
+      "description": "Course thumbnail for Sports Law",
+      "imageUrl": "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzb3BydHMlMjBlcXVpcG1lbnR8ZW58MHx8fHwxNzU5NTczMDAwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "sports equipment"
+    },
+    {
+      "id": "course-thumb-24",
+      "description": "Course thumbnail for Aviation Law",
+      "imageUrl": "https://images.unsplash.com/photo-1544016788-294b4bca4a84?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhdnVhdGlvbnxlbnwwfHx8fDE3NTk1NzMwMDB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "aviation"
+    },
+    {
       "id": "course-video-placeholder",
       "description": "Video player placeholder",
       "imageUrl": "https://images.unsplash.com/photo-1758541213979-fe8c9996e197?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjb3VydHJvb20lMjBpbnRlcmlvcnxlbnwwfHx8fDE3NTk1NzIzMDZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
