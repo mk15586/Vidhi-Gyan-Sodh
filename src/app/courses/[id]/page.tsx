@@ -19,7 +19,7 @@ type CoursePageProps = {
   };
 };
 
-export default function CoursePage({ params }: CoursePageProps) {
+export default async function CoursePage({ params }: CoursePageProps) {
   const course = courses.find((c) => c.id === params.id);
 
   if (!course) {
