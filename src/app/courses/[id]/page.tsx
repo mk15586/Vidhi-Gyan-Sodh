@@ -1,87 +1,29 @@
-'use client';
-import { notFound, useRouter, useParams } from 'next/navigation';
+'use server';
+import { notFound } from 'next/navigation';
 import Image from 'next/image';
-import React from 'react';
 
 import { courses } from '@/lib/courses';
-import type { Course } from '@/lib/types';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { useToast } from "@/hooks/use-toast";
-
-import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Star, Clock, BarChart, Users, PlayCircle, Heart, Share2, FileText, Download, BadgeCheck, ShoppingCart, Rocket, Facebook, Twitter, Linkedin } from 'lucide-react';
+import { Star, Clock, BarChart, Users, PlayCircle, FileText, Download, BadgeCheck, Rocket, ShoppingCart, Heart, Share2, Facebook, Twitter, Linkedin } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import Comments from '@/components/comments';
-import { Skeleton } from '@/components/ui/skeleton';
+import { Button } from '@/components/ui/button';
+import CourseActions from './course-actions';
 
+export default async function CoursePage({ params }: { params: { id: string } }) {
+  const id = params.id;
+  const course = courses.find((c) => c.id === id);
 
-export default function CoursePage() {
-  const router = useRouter();
-  const params = useParams();
-  const { toast } = useToast();
-  
-  const [course, setCourse] = React.useState<Course | null>(null);
-  const [loading, setLoading] = React.useState(true);
-
-  React.useEffect(() => {
-    const id = Array.isArray(params.id) ? params.id[0] : params.id;
-
-    if (id) {
-      const foundCourse = courses.find((c) => c.id === id);
-      if (foundCourse) {
-        setCourse(foundCourse);
-      } else {
-        notFound();
-      }
-       setLoading(false);
-    }
-  }, [params.id]);
-
-
-  const handleAddToCart = () => {
-    if (!course) return;
-    toast({
-      title: "Added to Cart!",
-      description: `"${course.title}" has been added to your cart.`,
-    });
-  };
-
-  const handleEnrollNow = () => {
-    handleAddToCart();
-    router.push('/checkout');
-  };
-  
-  if (loading || !course) {
-    return (
-        <div className="container mx-auto py-12 px-4">
-            <div className="grid lg:grid-cols-3 gap-12">
-                <div className="lg:col-span-2 space-y-8">
-                    <Skeleton className="h-12 w-3/4" />
-                    <Skeleton className="h-8 w-1/2" />
-                    <div className="flex gap-4">
-                        <Skeleton className="h-10 w-24" />
-                        <Skeleton className="h-10 w-24" />
-                        <Skeleton className="h-10 w-24" />
-                    </div>
-                    <Skeleton className="h-96 w-full" />
-                </div>
-                <div className="lg:col-span-1 space-y-4">
-                    <Skeleton className="h-48 w-full" />
-                    <Skeleton className="h-12 w-full" />
-                    <Skeleton className="h-12 w-full" />
-                </div>
-            </div>
-        </div>
-    );
+  if (!course) {
+    notFound();
   }
 
   const videoPlaceholder = PlaceHolderImages.find(img => img.id === 'course-video-placeholder');
   const userAvatar = PlaceHolderImages.find(img => img.id === 'user-avatar-1');
-
 
   return (
     <div className="bg-muted/40">
@@ -252,10 +194,7 @@ export default function CoursePage() {
                             <span className="text-xl text-muted-foreground line-through">₹{course.originalPrice}</span>
                         )}
                     </div>
-                    <div className="flex flex-col gap-3">
-                        <Button size="lg" className="w-full text-lg py-6" onClick={handleEnrollNow}><Rocket className="mr-2 h-5 w-5"/>Enroll Now</Button>
-                        <Button size="lg" variant="outline" className="w-full text-lg py-6" onClick={handleAddToCart}><ShoppingCart className="mr-2 h-5 w-5"/>Add to Cart</Button>
-                    </div>
+                    <CourseActions course={course} />
                      <div className="text-center mt-4">
                           <p className="text-sm text-muted-foreground flex items-center justify-center gap-2">
                               <BadgeCheck className="h-4 w-4 text-green-500" /> 30-Day Money-Back Guarantee
