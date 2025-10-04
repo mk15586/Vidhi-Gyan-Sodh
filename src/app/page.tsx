@@ -1,4 +1,6 @@
+'use client';
 import Link from 'next/link';
+import React from 'react';
 import {
   Carousel,
   CarouselContent,
@@ -6,12 +8,12 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
+import Autoplay from "embla-carousel-autoplay";
 import { Button } from '@/components/ui/button';
 import { courses } from '@/lib/courses';
 import CourseCard from '@/components/course-card';
 import { ArrowRight } from 'lucide-react';
 import type { Course } from '@/lib/types';
-
 
 const Section = ({ title, children, href }: { title: string, children: React.ReactNode, href: string }) => (
   <section className="py-8 md:py-12">
@@ -29,26 +31,39 @@ const Section = ({ title, children, href }: { title: string, children: React.Rea
   </section>
 );
 
-const CourseCarousel = ({ courses }: { courses: Course[] }) => (
-  <Carousel
-    opts={{
-      align: 'start',
-    }}
-    className="w-full"
-  >
-    <CarouselContent className="-ml-2">
-      {courses.map((course) => (
-        <CarouselItem key={course.id} className="basis-[90%] md:basis-1/3 lg:basis-1/4 pl-2">
-          <div className="p-1">
-            <CourseCard course={course} />
-          </div>
-        </CarouselItem>
-      ))}
-    </CarouselContent>
-    <CarouselPrevious className="hidden md:flex" />
-    <CarouselNext className="hidden md:flex" />
-  </Carousel>
-);
+const CourseCarousel = ({ courses, autoplay = false }: { courses: Course[], autoplay?: boolean }) => {
+  const plugin = React.useRef(
+    Autoplay({ delay: 2000, stopOnInteraction: true, stopOnMouseEnter: true })
+  );
+
+  return (
+    <Carousel
+      opts={{
+        align: 'start',
+        loop: autoplay,
+      }}
+      plugins={autoplay ? [plugin.current] : []}
+      className="w-full"
+    >
+      <CarouselContent className="-ml-2">
+        {courses.map((course) => (
+          <CarouselItem key={course.id} className="basis-[90%] md:basis-1/3 lg:basis-1/4 pl-2">
+            <div className="p-1">
+              <CourseCard course={course} />
+            </div>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      {!autoplay && (
+        <>
+          <CarouselPrevious className="hidden md:flex" />
+          <CarouselNext className="hidden md:flex" />
+        </>
+      )}
+    </Carousel>
+  );
+};
+
 
 export default function Home() {
   const continueWatching = courses.slice(0, 8);
@@ -66,11 +81,7 @@ export default function Home() {
       </Section>
       
       <Section title="Most Purchased" href="/courses">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {mostPurchased.map(course => (
-            <CourseCard key={course.id} course={course} />
-          ))}
-        </div>
+         <CourseCarousel courses={mostPurchased} autoplay={true} />
       </Section>
     </div>
   );
