@@ -1,3 +1,4 @@
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Star, Users } from 'lucide-react';
@@ -7,35 +8,51 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import type { Course } from '@/lib/types';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { Checkbox } from './ui/checkbox';
 
 interface CourseCardProps {
   course: Course;
+  showCheckbox?: boolean;
+  isSelected?: boolean;
+  onSelectChange?: () => void;
 }
 
-const CourseCard = ({ course }: CourseCardProps) => {
+const CourseCard = ({ course, showCheckbox, isSelected, onSelectChange }: CourseCardProps) => {
   const image = PlaceHolderImages.find(img => img.id === course.imageId);
 
   return (
     <Card className="flex h-full flex-col overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
       <CardHeader className="p-0">
-        <Link href={`/courses/${course.id}`} aria-label={course.title}>
-          <div className="relative aspect-[16/9]">
-            {image ? (
-                <Image
-                    src={image.imageUrl}
-                    alt={image.description}
-                    fill
-                    data-ai-hint={image.imageHint}
-                    className="object-cover"
+        <div className="relative">
+          <Link href={`/courses/${course.id}`} aria-label={course.title}>
+            <div className="relative aspect-[16/9]">
+              {image ? (
+                  <Image
+                      src={image.imageUrl}
+                      alt={image.description}
+                      fill
+                      data-ai-hint={image.imageHint}
+                      className="object-cover"
+                  />
+              ) : (
+                  <div className="flex h-full w-full items-center justify-center bg-secondary">
+                      <p>No image</p>
+                  </div>
+              )}
+               <Badge variant="secondary" className="absolute top-3 right-3">{course.level}</Badge>
+            </div>
+          </Link>
+          {showCheckbox && (
+              <div className="absolute top-3 left-3 bg-background/70 p-1 rounded-sm">
+                <Checkbox
+                  checked={isSelected}
+                  onCheckedChange={onSelectChange}
+                  aria-label={`Select ${course.title}`}
+                  className="h-5 w-5"
                 />
-            ) : (
-                <div className="flex h-full w-full items-center justify-center bg-secondary">
-                    <p>No image</p>
-                </div>
+              </div>
             )}
-             <Badge variant="secondary" className="absolute top-3 right-3">{course.level}</Badge>
-          </div>
-        </Link>
+        </div>
       </CardHeader>
       <CardContent className="flex-1 p-4">
         <CardTitle className="mb-2 font-headline text-lg leading-snug">
