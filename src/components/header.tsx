@@ -73,7 +73,7 @@ const Header = () => {
                 <span className="sr-only">Shopping Cart</span>
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-80" align="end">
+            <PopoverContent className="w-80" align="end" alignOffset={-16}>
               <div className="grid gap-4">
                 <div className="space-y-2">
                   <h4 className="font-medium leading-none">Shopping Cart</h4>
