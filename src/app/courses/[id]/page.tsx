@@ -20,24 +20,47 @@ export default function CoursePage() {
   const { toast } = useToast();
   const params = useParams();
   
-  const id = Array.isArray(params.id) ? params.id[0] : params.id;
-
   const [course, setCourse] = React.useState<(typeof courses)[0] | null>(null);
   const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
+    // useParams can be an empty object on first render.
+    // We ensure we have an ID before trying to find the course.
+    const id = Array.isArray(params.id) ? params.id[0] : params.id;
     if (id) {
       const foundCourse = courses.find((c) => c.id === id);
       if (foundCourse) {
         setCourse(foundCourse);
       } else {
+        // If the ID exists but no course is found, trigger a 404
         notFound();
       }
     }
-    setLoading(false);
-  }, [id]);
+    // Only set loading to false after we've attempted to find the course
+    // or if the id is present.
+    if(id) {
+      setLoading(false);
+    }
+  }, [params.id]);
 
-  if (loading) {
+
+  const handleAddToCart = () => {
+    if (!course) return;
+    toast({
+      title: "Added to Cart!",
+      description: `"${course.title}" has been added to your cart.`,
+    });
+    // Here you would typically add the course to a global cart state
+  };
+
+  const handleEnrollNow = () => {
+    // Here you would add to cart and then navigate
+    handleAddToCart();
+    router.push('/checkout');
+  };
+  
+  // Render a loading state until the course has been found.
+  if (loading || !course) {
     return (
         <div className="container mx-auto py-12 px-4">
             <div className="space-y-4">
@@ -57,26 +80,6 @@ export default function CoursePage() {
         </div>
     );
   }
-
-  if (!course) {
-    // This will be caught by the notFound() in useEffect, but as a fallback.
-    return notFound();
-  }
-
-
-  const handleAddToCart = () => {
-    toast({
-      title: "Added to Cart!",
-      description: `"${course.title}" has been added to your cart.`,
-    });
-    // Here you would typically add the course to a global cart state
-  };
-
-  const handleEnrollNow = () => {
-    // Here you would add to cart and then navigate
-    handleAddToCart();
-    router.push('/checkout');
-  };
 
   const videoPlaceholder = PlaceHolderImages.find(img => img.id === 'course-video-placeholder');
   const userAvatar = PlaceHolderImages.find(img => img.id === 'user-avatar-1');
