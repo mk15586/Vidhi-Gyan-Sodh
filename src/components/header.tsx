@@ -9,6 +9,7 @@ import {
   Settings,
   LogOut,
   BookOpen,
+  X,
 } from 'lucide-react';
 import {
   DropdownMenu,
@@ -18,10 +19,17 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import Logo from '@/components/logo';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { courses } from '@/lib/courses';
+import { Separator } from './ui/separator';
 
 const navLinks = [
   { href: '/courses', label: 'Courses' },
@@ -32,6 +40,8 @@ const navLinks = [
 const userAvatar = PlaceHolderImages.find(img => img.id === 'user-avatar-1');
 
 const Header = () => {
+  const cartItems = courses.slice(0, 3);
+  const subtotal = cartItems.reduce((acc, item) => acc + item.price, 0);
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
@@ -55,12 +65,53 @@ const Header = () => {
               <Input placeholder="Search courses..." className="pl-10" />
             </div>
           </div>
-          <Button asChild variant="ghost" size="icon">
-            <Link href="/cart">
-              <ShoppingCart className="h-5 w-5" />
-              <span className="sr-only">Shopping Cart</span>
-            </Link>
-          </Button>
+          
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <ShoppingCart className="h-5 w-5" />
+                <span className="sr-only">Shopping Cart</span>
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-80" align="end">
+              <div className="grid gap-4">
+                <div className="space-y-2">
+                  <h4 className="font-medium leading-none">Shopping Cart</h4>
+                  <p className="text-sm text-muted-foreground">
+                    You have {cartItems.length} items in your cart.
+                  </p>
+                </div>
+                <Separator />
+                <div className="grid gap-4 max-h-60 overflow-y-auto">
+                    {cartItems.map((item) => {
+                        const image = PlaceHolderImages.find(p => p.id === item.imageId);
+                        return (
+                            <div key={item.id} className="flex items-start gap-4">
+                                <div className="relative w-16 h-12 rounded overflow-hidden flex-shrink-0">
+                                    {image && <Image src={image.imageUrl} alt={item.title} fill className="object-cover" data-ai-hint={image.imageHint}/>}
+                                </div>
+                                <div className="flex-grow">
+                                    <h5 className="text-sm font-semibold leading-tight">{item.title}</h5>
+                                    <p className="text-sm text-primary font-medium">₹{item.price}</p>
+                                </div>
+                                <Button variant="ghost" size="icon" className="h-6 w-6 text-muted-foreground hover:text-destructive">
+                                    <X className="h-3 w-3"/>
+                                </Button>
+                            </div>
+                        )
+                    })}
+                </div>
+                <Separator />
+                <div className="flex justify-between items-center font-semibold">
+                    <span>Subtotal</span>
+                    <span>₹{subtotal.toFixed(2)}</span>
+                </div>
+                <Button asChild>
+                    <Link href="/cart">View Cart & Checkout</Link>
+                </Button>
+              </div>
+            </PopoverContent>
+          </Popover>
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
