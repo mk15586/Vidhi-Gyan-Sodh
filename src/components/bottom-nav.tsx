@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, BookCopy, ShoppingCart, User } from 'lucide-react';
+import { Home, BookCopy, ShoppingCart, User, BookOpen } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useEffect, useState } from 'react';
@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 const navItems = [
   { href: '/', icon: Home, label: 'Home' },
   { href: '/courses', icon: BookCopy, label: 'Courses' },
+  { href: '/my-learning', icon: BookOpen, label: 'Learning' },
   { href: '/cart', icon: ShoppingCart, label: 'Cart' },
   { href: '/account', icon: User, label: 'Account' },
 ];

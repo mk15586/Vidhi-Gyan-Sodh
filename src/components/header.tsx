@@ -209,7 +209,7 @@ const Header = () => {
                   <Link href="/account"><User className="mr-2 h-4 w-4" />Profile</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link href="/courses"><BookOpen className="mr-2 h-4 w-4" />My Courses</Link>
+                  <Link href="/my-learning"><BookOpen className="mr-2 h-4 w-4" />My Courses</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link href="/account"><Heart className="mr-2 h-4 w-4" />Wishlist</Link>

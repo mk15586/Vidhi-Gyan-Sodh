@@ -10,15 +10,17 @@ import { Button } from '@/components/ui/button';
 import type { Course } from '@/lib/types';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Checkbox } from './ui/checkbox';
+import { Progress } from './ui/progress';
 
 interface CourseCardProps {
   course: Course;
   showCheckbox?: boolean;
   isSelected?: boolean;
   onSelectChange?: () => void;
+  progress?: number;
 }
 
-const CourseCard = ({ course, showCheckbox, isSelected, onSelectChange }: CourseCardProps) => {
+const CourseCard = ({ course, showCheckbox, isSelected, onSelectChange, progress }: CourseCardProps) => {
   const image = PlaceHolderImages.find(img => img.id === course.imageId);
 
   return (
@@ -70,16 +72,30 @@ const CourseCard = ({ course, showCheckbox, isSelected, onSelectChange }: Course
             </div>
         </div>
       </CardContent>
-      <CardFooter className="p-4 pt-0 flex justify-between items-center">
-        <div>
-          <p className="text-xl font-bold text-primary">₹{course.price}</p>
-          {course.originalPrice && (
-            <p className="text-sm text-muted-foreground line-through">₹{course.originalPrice}</p>
-          )}
-        </div>
-        <Button asChild size="sm">
-          <Link href={`/courses/${course.id}`}>View Details</Link>
-        </Button>
+      <CardFooter className="p-4 pt-0 flex flex-col items-start gap-2">
+         {progress !== undefined ? (
+          <div className="w-full">
+            <Progress value={progress} className="h-2 mb-2" />
+            <p className="text-xs text-muted-foreground">{progress}% complete</p>
+          </div>
+        ) : (
+          <div className="w-full flex justify-between items-center">
+            <div>
+              <p className="text-xl font-bold text-primary">₹{course.price}</p>
+              {course.originalPrice && (
+                <p className="text-sm text-muted-foreground line-through">₹{course.originalPrice}</p>
+              )}
+            </div>
+            <Button asChild size="sm">
+              <Link href={`/courses/${course.id}`}>View Details</Link>
+            </Button>
+          </div>
+        )}
+        {progress !== undefined && (
+           <Button asChild size="sm" className="w-full">
+            <Link href={`/courses/${course.id}`}>Continue Learning</Link>
+           </Button>
+        )}
       </CardFooter>
     </Card>
   );
