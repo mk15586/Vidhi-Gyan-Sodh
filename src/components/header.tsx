@@ -14,6 +14,8 @@ import {
   Check,
   Moon,
   Sun,
+  Home,
+  BookCopy,
 } from 'lucide-react';
 import {
   DropdownMenu,
@@ -40,9 +42,10 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from './ui/
 import { useTheme } from 'next-themes';
 
 const navLinks = [
+  { href: '/', label: 'Home' },
   { href: '/courses', label: 'Courses' },
-  { href: '/#about', label: 'About Us' },
-  { href: '/#contact', label: 'Contact' },
+  { href: '/cart', label: 'Cart' },
+  { href: '/account', label: 'Account' },
 ];
 
 const userAvatar = PlaceHolderImages.find(img => img.id === 'user-avatar-1');
