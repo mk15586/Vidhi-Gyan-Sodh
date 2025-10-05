@@ -70,12 +70,12 @@ const Header = () => {
           <Link href="/" className="flex items-center">
               <Image src="/logo.png" alt="Vidhi Gyan Sodh Logo" width={100} height={26} priority />
           </Link>
-          <nav className="hidden md:flex items-center space-x-6 text-sm font-medium ml-10">
+          <nav className="hidden md:flex items-center space-x-8 text-sm font-medium ml-10">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="transition-colors hover:text-primary"
+                className="relative text-foreground/80 transition-colors hover:text-foreground after:content-[''] after:absolute after:left-1/2 after:-translate-x-1/2 after:-bottom-1 after:h-[2px] after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
               >
                 {link.label}
               </Link>
